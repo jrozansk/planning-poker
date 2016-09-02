@@ -1,0 +1,28 @@
+{
+  "name": "planning-poker",
+  "version": "0.0.1",
+  "description": "Simple web application for development teams to conduct planning sessions",
+  "main": "poker_server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrozansk/planning-poker.git"
+  },
+  "keywords": [
+    "scrum",
+    "planning",
+    "poker"
+  ],
+  "author": "rozanski.mail@gmail.com",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/jrozansk/planning-poker/issues"
+  },
+  "homepage": "https://github.com/jrozansk/planning-poker#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "pug": "^2.0.0-beta6"
+  }
+}
