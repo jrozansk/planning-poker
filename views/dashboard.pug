@@ -3,7 +3,7 @@ html(lang="en")
   script(src="https://cdn.socket.io/socket.io-1.4.5.js")
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
   script.
-    var socket = io.connect();
+    var socket = io.connect(window.location.origin, {query: 'isItRealClient=false'});
     socket.on('clientsQuantityChange', function(data){
       $('#clientsQuantity').text(data.quantity);
     });
@@ -14,5 +14,5 @@ html(lang="en")
       button(id="activate", type="button") New voting
     div(id="results")
       We will display results here!
-    div(id="clientsQuantity")
+    div(id="clientsQuantity")= clientsQuantity
     
