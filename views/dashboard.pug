@@ -16,6 +16,5 @@ html(lang="en")
       $('#clientsQuantity').text(data.quantity);
     });
     $('#activate').click(function() {
-        console.log('activating');
         socket.emit('activate');
     });

@@ -22,6 +22,15 @@ html(lang="en")
   script.
     var socket = io.connect();
     socket.on('activate', function() {
-      $('#voting_pane').toggleClass("invisible");
-      $('#waiting_pane').toggleClass("invisible");
+      $('#voting_pane').removeClass("invisible");
+      $('#waiting_pane').addClass("invisible");
+    });
+    
+    socket.on('newVote', function(data) {
+      $('#voting_pane').addClass("invisible");
+      $('#waiting_pane').removeClass("invisible");
+    });
+    
+    $("button").click(function(e) {
+      socket.emit('vote', {'estimation': $(this).text});
     });

@@ -3,7 +3,6 @@ var io = require('socket.io');
 var app = express();
 var session = require("express-session");
 
-const EventEmitter = require('events');
 const port = 3000;
 
 var clientsConnected = new Set();
@@ -53,6 +52,17 @@ sockets.on('connection', function(socket) {
     });
     
     socket.on('activate', function() {
+      isPlanningActive = true;
+      answers = {};
       socket.broadcast.emit('activate');
+    });
+    
+    socket.on('vote', function(data) {
+      if(socket.request.session.id in answers) {
+        console.log(socket.request.session.id + ' voted already');
+      } else {
+        answers[socket.request.session.id] = data.estimation;
+        socket.emit('newVote');
+      }
     });
 });
