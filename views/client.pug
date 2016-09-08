@@ -1,12 +1,12 @@
 doctype html
 html(lang="en")
+  link(rel='stylesheet', href='/style.css')
   script(src="https://cdn.socket.io/socket.io-1.4.5.js")
-  script.
-    var socket = io.connect(window.location.origin, {query: 'isItRealClient=true'});
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
   head
     title= "Planning poker - client panel"
-  body
-    div(id="voting_pane", style="visibility:hidden")
+  body 
+    div(id="voting_pane" class={invisible: votingNeeded === false})
       button(id="0", type="button") 0
       button(id="1", type="button") 1
       button(id="2", type="button") 2
@@ -17,5 +17,11 @@ html(lang="en")
       button(id="20", type="button") 20
       button(id="40", type="button") 40
       button(id="100", type="button") 100
-    div(id="waiting_pane")
+    div(id="waiting_pane" class={invisible: votingNeeded === true})
       You need to wait for next voting session being started.
+  script.
+    var socket = io.connect();
+    socket.on('activate', function() {
+      $('#voting_pane').toggleClass("invisible");
+      $('#waiting_pane').toggleClass("invisible");
+    });
