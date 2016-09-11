@@ -62,7 +62,7 @@ sockets.on('connection', function(socket) {
         console.log(socket.request.session.id + ' voted already');
       } else {
         answers[socket.request.session.id] = data.estimation;
-        socket.emit('newVote');
+        socket.broadcast.emit('newVote', data);
       }
     });
 });

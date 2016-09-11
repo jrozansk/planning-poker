@@ -26,11 +26,8 @@ html(lang="en")
       $('#waiting_pane').addClass("invisible");
     });
     
-    socket.on('newVote', function(data) {
+    $("button").click(function() {
+      socket.emit('vote', {'estimation': this.id});
       $('#voting_pane').addClass("invisible");
       $('#waiting_pane').removeClass("invisible");
-    });
-    
-    $("button").click(function(e) {
-      socket.emit('vote', {'estimation': $(this).text});
     });

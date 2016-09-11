@@ -7,14 +7,16 @@ html(lang="en")
   body
     div(id="buttons")
       button(id="activate", type="button") New voting
-    div(id="results")
-      We will display results here!
     div(id="clientsQuantity")= clientsQuantity
+    div(id="results") Results:
   script.
     var socket = io.connect();
     socket.on('clientsQuantityChange', function(data){
       $('#clientsQuantity').text(data.quantity);
     });
+    socket.on('newVote', function(data){
+      $('#results').append(" " + data.estimation);
+    });
     $('#activate').click(function() {
-        socket.emit('activate');
+      socket.emit('activate');
     });
